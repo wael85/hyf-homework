@@ -1,0 +1,38 @@
+
+body{
+    border: solid black;
+    width: 1000px;
+    margin: auto;
+
+    
+}
+header{
+    display: flex;
+    justify-content: space-between;
+}
+img{
+    height: 100px;
+    
+}
+nav{
+    width: 400px;
+    margin-top: 50px;
+}
+.nevcation{
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+a{
+    text-decoration: none;
+}
+.textErea{
+    display: flex;
+    
+}
+.textErea1{
+    width: 200px;
+    
+    
+}
