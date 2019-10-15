@@ -1,0 +1,198 @@
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+         <title>Document</title>
+     </head>
+     <body>
+         <h1>JS2 week 1</h1>
+         <div class="firstAss">
+                <h3 class="housPrices"></h3>
+                <ul class="list"></ul>
+                <h3 class="average"></h3>
+                <h3 class="median"></h3>
+             
+         </div>
+         <div class="secondAss"></div>
+         
+              
+         <form action="" id="myform">
+                <select name="desplayOptions" id="select">
+                        <option value=""> chose one option</option>
+                        <option value="clickOn">click on</option>
+                        <option value="hover">Hover</option>
+                        <option value="whileWritting">While Writting</option>
+                </select>
+                <label for="pirsonName">Inter your name</label>
+                <input type="text" name="pirsonName" id="pirsonName" class="inputSpirit" placeholder="Fx, Wael"> 
+                <button class = "spiritButton">Get your spirit animal</button>
+                <button type="reset" class="reset" onclick="removeevents()">Reset</button>
+         </form>
+         <button class="getNewSpirit">Get New Spirit</button>
+         
+         <div class="nameWithSpiritDiv">
+             <h1 class="nameWithSpirit" style="display: inline;"></h1>
+             <h1 id = "spiritPlace" style="display: inline;"></h1>
+
+         </div>
+        
+         <!--Find the shortest word-->
+            <script>
+                const danishWords = ['bil', 'plante', 'kaffe', 'bog', 'ø', 'planetarium'];
+               console.log(findShortestWord(danishWords)) ; 
+                function findShortestWord(arr){
+                    
+                    function myfunction(str1,str2){
+                        if (str1.length >= str2.length){
+                            return str2
+                        }else {
+                            return str1}
+                }
+                return arr.reduce(myfunction);
+            }
+            </script>
+        <!--Difference between median and average-->
+            <script>
+                const housePrices = [3000000, 3500000,
+                 1300000, 40000000, 100000000, 8000000, 2100000];
+                function average(arr){
+                    let sum=0;
+                    
+                    for ( i = 0 ; i< arr.length ;i++){
+                        sum += arr[i];
+                    }
+                    
+                    let average = sum / arr.length;
+                    return Math.round(average) ;
+                }
+              
+                console.log(average(housePrices));
+                
+                function median(arr){
+                  let arr1 =  arr.sort(function(a,b){return a-b});
+                  let median;
+                  if ((arr.length % 2) != 0){
+
+                    return median = arr1[(arr.length + 1)/2];
+                    
+                  }else{
+                      return median = (arr1[(arr1.length)/2]+arr1[((arr1.length)/2)-1])/2;
+                  }
+
+                }
+                console.log(median(housePrices));
+                let homes = document.querySelector('.housPrices');
+                homes.innerText = ' Houses Prises is: ';
+                let list = document.querySelector('.list');
+                prices(housePrices);
+                function prices(arr){
+
+                    for(i = 0 ; i < (arr.length) ; i++){
+                        let li =document.createElement('li');
+                        list.appendChild(li);
+                        li.innerText = arr[i]; 
+                    }
+                }
+                let average1 = document.querySelector('.average');
+                average1.innerText = 'The Average is: '+average(housePrices);
+                let median1 = document.querySelector('.median');
+                median1.innerText = 'The Median is: '+median(housePrices);
+                
+                
+                
+                
+            </script>
+        <!--Spirit animal name generator-->
+        <script>
+            // creat a line between assiments
+            let secondAss = document.querySelector('.secondAss');
+            let hr = document.createElement('hr');
+            secondAss.appendChild(hr);
+            // start of spirt animal
+            let spiritAnimals = ['lion','lion1','lion2','lion3','lion4','lion5','lion6','lion7','lion8','lion9']
+            let suitSpiritAnimal = spiritAnimals[Math.floor (Math.random()*10)];
+            console.log(suitSpiritAnimal);
+            const pirsonName = document.querySelector('#pirsonName');
+            const spiritButton = document.querySelector('.spiritButton');
+            const nameWithSpirit = document.querySelector('.nameWithSpirit');
+            const spiritPlace = document.getElementById('spiritPlace');
+            
+            const select = document.getElementById('select');
+            console.log(select);
+
+            select.addEventListener('input',function(event){
+                 event.preventDefault();
+                if (select.value=='hover'){
+                    console.log('hover');
+                    pirsonName.addEventListener("mouseover",function(event){
+                        event.preventDefault();
+                         if (pirsonName.value){
+                                 nameWithSpirit.innerText = pirsonName.value +': ' + pirsonName.value +' -' ;
+                                  spiritPlace.innerText = suitSpiritAnimal;
+                                   const getNewSpiritButton = document.querySelector('.getNewSpirit');
+                            getNewSpiritButton.addEventListener('click',function(){
+               
+                                  let anotheSpiritAnimal = spiritAnimals[Math.floor (Math.random()*10)];
+                                 spiritPlace.innerText=anotheSpiritAnimal;
+
+                            });   
+                        }
+             
+            
+                    });
+                    
+                }else if (select.value=='whileWritting'){
+                    console.log('while writting');
+                    pirsonName.addEventListener("input",function(event){
+                        event.preventDefault();
+                         if (pirsonName.value){
+                                 nameWithSpirit.innerText = pirsonName.value +': ' + pirsonName.value +' -' ;
+                                  spiritPlace.innerText = suitSpiritAnimal;
+                                   const getNewSpiritButton = document.querySelector('.getNewSpirit');
+                            getNewSpiritButton.addEventListener('click',function(){
+               
+                                  let anotheSpiritAnimal = spiritAnimals[Math.floor (Math.random()*10)];
+                                 spiritPlace.innerText=anotheSpiritAnimal;
+
+                            });   
+                        }
+             
+            
+                    });
+                }else if (select.value == 'clickOn'){
+                    console.log('on click');
+                    spiritButton.addEventListener("click",function(event){
+                        event.preventDefault();
+                         if (pirsonName.value){
+                                 nameWithSpirit.innerText = pirsonName.value +': ' + pirsonName.value +' -' ;
+                                  spiritPlace.innerText = suitSpiritAnimal;
+                                   const getNewSpiritButton = document.querySelector('.getNewSpirit');
+                            getNewSpiritButton.addEventListener('click',function(){
+               
+                                  let anotheSpiritAnimal = spiritAnimals[Math.floor (Math.random()*10)];
+                                 spiritPlace.innerText=anotheSpiritAnimal;
+
+                            });   
+                        }else{alert('please inter your name')}
+             
+            
+                    });
+                }else{
+                alert('you need to choos one');
+
+                }
+    
+            });
+            function removeevents(){
+                spiritPlace.removeEventListener("click");
+
+            }
+              
+            
+            
+         </script>
+        
+     </body>
+     </html>
