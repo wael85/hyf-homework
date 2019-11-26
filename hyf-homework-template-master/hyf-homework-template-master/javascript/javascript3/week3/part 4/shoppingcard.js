@@ -3,6 +3,16 @@ class Product {
         this.name = name;
         this.price = price;
     }
+    convertToCurrency(currency){
+        const currencyObj = {
+            kroner: () => this.price,
+            usd:() => this.price * 0.14745 ,
+            php: () => this.price * 7.50944,
+            pound: () => this.price * 0.11490,
+            euro: () => this.price * 0.13382
+        };
+        return currencyObj[currency]();
+    }
 }
 
 class ShoppingCart {
@@ -153,6 +163,6 @@ let productsArr = [flatscreen,ipad,watch,mixer,lcd,apple,snake,zoo,
        console.log(searching.value);
    });
  
-
-   //remove item frome card
+// call convert function wwith eur currency
+console.log(lcd.convertToCurrency('euro'));
    
