@@ -1,0 +1,21 @@
+# select count(*) from task 
+#select * from task where due_date is null;
+
+#select count(*) from task where due_date is null;
+
+#select * from task where status_id = 3;
+
+#select * from task where status_id = 2 or status_id = 1 ;
+
+#select * from task order by created asc ;
+
+#select * from task order by created asc limit 1;
+#alter table task change column description descriptions text ;
+
+#select title , due_date from task where title like '%database%' or descriptions like '%database%';
+
+#select title as text , status_id as text from task;
+
+#select name, count(status_id) as status_count from status join task on task.status_id = status.id group by name;
+
+select name, count(status_id) as status_count from status join task on task.status_id = status.id group by name order by status_count desc;
