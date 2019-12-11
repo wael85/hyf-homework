@@ -1,0 +1,25 @@
+!! part 1 !!
+#insert into task (title,descriptions,created,updated,due_date,status_id,user_id) values ('buy fruts','go to netto',CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP()+100*100*100,CURRENT_TIMESTAMP()+4,'2','3');
+
+#update task set task.title = 'go to hom' where task.id = 5;
+
+#update task set task.due_date = current_timestamp() where task.id = 5;
+
+#update task set task.status_id = 1 where task.id = 5;
+#update task set task.status_id = 3 where task.id = 5;
+
+#delete from task where task.id = 5;
+
+
+!! school database !!
+#create table class (id int auto_increment primary key ,name text,begins date,ends date );
+
+#insert into class ( name ,begins ,ends ) values ('wael',current_date(),current_date()+100*100*100);
+#select * from class ;
+#CREATE TABLE `school`.`student` (`id` INT NOT NULL AUTO_INCREMENT primary key,`name` TEXT NULL,`email` VARCHAR(45) NULL,`phone` INT NULL,`class_id` INT NOT NULL);
+ 
+# alter table student add constraint student_class_id foreign key (class_id) references class(id);
+
+#alter table student add index (name);
+
+# alter table class add column (status enum('not-started','ongoing','finished'));
