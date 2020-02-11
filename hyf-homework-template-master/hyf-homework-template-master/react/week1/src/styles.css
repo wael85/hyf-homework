@@ -1,0 +1,15 @@
+#root {
+  font-family: sans-serif;
+  text-align: center;
+}
+label{
+display: block;
+}
+button{
+display: block;
+margin: auto;
+margin-top: 10px
+}
+li {
+text-align: left;
+}
