@@ -43,7 +43,7 @@ export const AddToList = ({ arr }) => {
       <button onClick={handleClick}> add</button>
       <ul className="list">
         {arr1.map((des, key) => (
-          <AddTo  index={key} s={des.description} />
+          <AddTo  ind={key} s={des.description} />
         ))}
       </ul>
     </div>
