@@ -7,8 +7,8 @@ export const AddToList = ({ arr }) => {
     const newValue = [...arr1];
 
     const newRepository = {
-      id: newValue.length,
-      description: "this is very new"
+      id: newValue.length+1,
+      description: "this is very new"+ newValue.length
     };
 
     newValue.push(newRepository);
@@ -22,30 +22,29 @@ export const AddToList = ({ arr }) => {
     setArr1([...newValue]);
   };
 
-  const AddTo = ({ s, ind }) => {
-     const [ addclass ,setclass] = useState(false);
-     
-
-    return (
-      <div  className = {`${addclass ? `line` : ``}`}>
-        
-        <li>
-          {s}
-          <input type="checkbox" onChange= {()=>setclass(!addclass)}/>
-          <button onClick={() => HandleDelete(ind)}>Delete</button>
-        </li>
-      </div>
-    );
-  };
+  
 
   return (
     <div>
       <button onClick={handleClick}> add</button>
       <ul className="list">
-        {arr1.map((des, key) => (
-          <AddTo  ind={key} s={des.description} />
+        {arr1.map((des, key ) => (
+          <AddTo ind={key} s={des.description} HandleDelete={()=>HandleDelete(key)}/>
         ))}
       </ul>
+    </div>
+  );
+};
+const AddTo = ({ s, ind ,HandleDelete}) => {
+  const [addclass, setclass] = useState(false);
+
+  return (
+    <div className={`${addclass ? `line` : ``}`}>
+      <li>
+        {s}
+        <input type="checkbox" onChange={() => setclass(!addclass)} />
+        <button onClick={ HandleDelete}>Delete</button>
+      </li>
     </div>
   );
 };
