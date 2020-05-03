@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <script type="text/javascript">// Promises 
+      var _eid_promises = {}; 
+      // Turn the incoming message from extension 
+      // into pending Promise resolving 
+      window.addEventListener("message", function(event) { 
+          if(event.source !== window) return; 
+          if(event.data.src && (event.data.src === "background.js")) { 
+              console.log("Page received: "); 
+              console.log(event.data); 
+              // Get the promise 
+              if(event.data.nonce) { 
+                  var p = _eid_promises[event.data.nonce]; 
+                  // resolve 
+                  if(event.data.result === "ok") { 
+                      if(event.data.signature !== undefined) { 
+                          p.resolve({hex: event.data.signature}); 
+                      } else if(event.data.version !== undefined) { 
+                          p.resolve(event.data.extension + "/" + event.data.version); 
+                      } else if(event.data.cert !== undefined) { 
+                          p.resolve({hex: event.data.cert}); 
+                      } else { 
+                          console.log("No idea how to handle message"); 
+                          console.log(event.data); 
+                      } 
+                  } else { 
+                      // reject 
+                      p.reject(new Error(event.data.result)); 
+                  } 
+                  delete _eid_promises[event.data.nonce]; 
+              } else { 
+                  console.log("No nonce in event msg"); 
+              } 
+          } 
+      }, false); 
+       
+       
+      function TokenSigning() { 
+          function nonce() { 
+              var val = ""; 
+              var hex = "abcdefghijklmnopqrstuvwxyz0123456789"; 
+              for(var i = 0; i < 16; i++) val += hex.charAt(Math.floor(Math.random() * hex.length)); 
+              return val; 
+          } 
+       
+          function messagePromise(msg) { 
+              return new Promise(function(resolve, reject) { 
+                  // amend with necessary metadata 
+                  msg["nonce"] = nonce(); 
+                  msg["src"] = "page.js"; 
+                  // send message 
+                  window.postMessage(msg, "*"); 
+                  // and store promise callbacks 
+                  _eid_promises[msg.nonce] = { 
+                      resolve: resolve, 
+                      reject: reject 
+                  }; 
+              }); 
+          } 
+          this.getCertificate = function(options) { 
+              var msg = {type: "CERT", lang: options.lang, filter: options.filter}; 
+              console.log("getCertificate()"); 
+              return messagePromise(msg); 
+          }; 
+          this.sign = function(cert, hash, options) { 
+              var msg = {type: "SIGN", cert: cert.hex, hash: hash.hex, hashtype: hash.type, lang: options.lang, info: options.info}; 
+              console.log("sign()"); 
+              return messagePromise(msg); 
+          }; 
+          this.getVersion = function() { 
+              console.log("getVersion()"); 
+              return messagePromise({ 
+                  type: "VERSION" 
+              }); 
+          }; 
+      }</script>
+   <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="index.html" id="form">
+      <input  name="" id="city">
+      <button type="submit">Get Weather</button>
+    </form>
+    <button id="weatherByLocation">Get my location</button>
+     <div class="contener">
+    <ul class="info"></ul>
+</div>
+<div id="mapid" ></div>
+
+
+
+    <script src="main.js"></script>
+    
+  
+  
+</body>
+</html>
