@@ -1,0 +1,47 @@
+h1{
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    text-align: center;
+}
+
+img{
+    width: 400px;
+    display: block;
+    border: outset;
+    padding: 5px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 20px;
+    -webkit-box-shadow: -5px 7px 5px 0px rgba(121, 117, 117, 0.75);
+    -moz-box-shadow: -5px 7px 5px 0px rgba(121, 114, 114, 0.75);
+    box-shadow: -5px 7px 5px 0px rgba(124, 120, 120, 0.75);
+}
+#searchWord ,#nrOfGif{
+    display: block;
+    margin: auto;
+    height: 50px;
+    width: 300px;
+    border-radius: 5px;
+    -webkit-box-shadow: -5px 7px 5px 0px rgba(121, 117, 117, 0.75);
+-moz-box-shadow: -5px 7px 5px 0px rgba(121, 114, 114, 0.75);
+box-shadow: -5px 7px 5px 0px rgba(124, 120, 120, 0.75);
+font-size: x-large;
+text-align: center;
+}
+
+#button{
+    display: block;
+    height: 50px;
+    width: 250px;
+    border : outset;
+    border-radius: 20px;
+    font-size: xx-large;
+    -webkit-box-shadow: -5px 7px 5px 0px rgba(121, 117, 117, 0.75);
+    -moz-box-shadow: -5px 7px 5px 0px rgba(121, 114, 114, 0.75);
+    box-shadow: -5px 7px 5px 0px rgba(124, 120, 120, 0.75);
+    background-color: rgb(204, 255, 153);
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
