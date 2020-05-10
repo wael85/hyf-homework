@@ -8,13 +8,11 @@ const boxes = [redBox, blueBox, greenBox];
 function translateOneByOne(){
     moveElement(redBox, {x: 20, y: 300})
     .then(res=>console.log('red'));
-    setTimeout(()=>{moveElement(blueBox, {x: 400, y: 300})
-    .then(res=>console.log('blue'));},1000);
-    setTimeout(()=>{moveElement(greenBox, {x: 400, y: 20})
-    .then(res=>console.log('green'));},2000);
-    setTimeout(()=>{
-        thamb.classList.add('shown');    
-    },4000)  
+       return moveElement(blueBox, {x: 400, y: 300})
+    .then(res=>console.log('blue'))
+       return moveElement(greenBox, {x: 400, y: 20})
+    .then(res=>console.log('green'))
+    .then(thamb.classList.add('shown'))  
 }
 //move all at once
 function translateAllAtOnce(){
