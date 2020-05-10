@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--//delete item from array-->
+        <script>
+        //delete item from array
+    const names = ['Peter', 'Ahmad', 'Yana', 'kristina', 'Rasmus', 'Samuel', 'katrine', 'Tala'];
+            const nameToRemove = names.indexOf('Ahmad');
+            if (nameToRemove > -1){
+               delete names[nameToRemove];
+            }
+            console.log(nameToRemove);
+            
+            
+            console.log(names); // ['Peter', 'Yana', 'kristina', 'Rasmus', 'Samuel', 'katrine', 'Tala']
+            console.log(names[1]);
+        </script>
+    <!-- // reduce function test-->
+        <script>
+        // reduce function test
+                    var numbers = [175, 50, 25,150,200,201];
+                    
+                    console.log( numbers.reduce(myFunc));
+                    
+                    function myFunc(num, num1) {
+                    if (num>= num1){
+                         return num;
+                    }
+                     else{
+                           return num1;
+                    }
+                    }
+        </script>
+    <!-- //speed test -->
+        <script>
+    //speed test 
+    const travelInformation = {
+          speed: 50,
+          destinationDistance: 400,
+        };
+    function findTimeToCrossDistance(obj){
+        //finding how many hole hours to cross the distance
+        let timeInHuours =Math.floor(obj.destinationDistance / obj.speed) ;
+        //find how many minuts by geting the remainder, then find how much pircent is it from the hour and multeby 60 to get minuts.
+        let timeInMinuts = Math.round(((obj.destinationDistance % obj.speed) / obj.speed )*60)  ;
+        return timeInHuours+ " Hours and "+ timeInMinuts +" minutes.";
+
+    }
+
+    const travelTime = findTimeToCrossDistance(travelInformation);
+    console.log(travelTime); // 4 hours and 42 minutes
+        </script>
+    <!--Series duration of my life-->
+       
+        <script>
+        const seriesDurations = [
+            {
+              title: 'Game of thrones',
+              days: 3,
+              hours: 1,
+              minutes: 0,  
+            },
+            {
+              title: 'Sopranos',
+              days: 3,
+              hours: 14,
+              minutes: 0,
+            },
+            {
+              title: 'The Wire',
+              days: 2,
+              hours: 12,
+              minutes: 0,
+            }
+        ]
+        // modify my object
+        seriesDurations.pop(1);
+        seriesDurations.push({title : 'The simpson',days : 10 , hours : 4, minutes :12 });
+        //  to get your  age in minuts  vist http://www.mathcats.com/explore/age/calculator.html
+        const myLifeinMinuts = 18034000;
+        //cheec my object
+        console.log(seriesDurations);
+        // function to calculate  how much the series last in minuts and get outputs
+        function seriesTookfromLife(arr){
+            let allSeries = [];
+            for (i = 0 ; i < arr.length ; i++){
+               let seriesDurationsInMinuts = (arr[i].days * 1440) +  (arr[i].hours * 60) + arr[i].days;
+               let seriesTook =  ((seriesDurationsInMinuts / myLifeinMinuts) * 100).toFixed(4) ;
+               console.log(arr[i].title+ ' took ' +seriesTook+'%'+' of my life.');
+               allSeries.push( seriesTook);
+            }
+            let sum=0 ;
+            for (i = 0 ; i < allSeries.length ; i++){
+                sum +=parseFloat(allSeries[i]);
+            }
+            console.log('in total that is '+ sum+'%  of my lif');
+
+        }
+        seriesTookfromLife(seriesDurations);
+
+        </script>
+    <!--Add song to database-->
+        <script>
+           const songDatabase = [{
+                    songId: 1,
+                    title: 'My baby',
+                    artist: 'Soggy socks',
+                  },
+                  {
+                    songId: 2,
+                    title: '3 nails in wood',
+                    artist: 'The carpenters',
+                  },
+                  {
+                    songId: 3,
+                    title: 'Blacker than black',
+                    artist: 'Instant coffee',
+                  },
+                  {
+                    songId: 4,
+                    title: 'When is enough too little?',
+                    artist: 'The spies girls',
+                  },
+                ];
+
+            const myPlaylist = [];
+            // add song to data base
+            function addSongToDatabase (song){
+                  song = {
+                      songId : songDatabase.length + 1,
+                      title : 'anysong',
+                      artist : 'me'
+                  }
+                  songDatabase.push(song);
+            }
+            // test addsong sunction
+            addSongToDatabase();
+            console.log(songDatabase);
+            // find a song by title function
+            function getSongByTitle(title1){
+                let obj = songDatabase.find(o => o.title === title1);
+
+                  return obj ;
+                }
+            // test the getsongbyid function    
+            const searchedSong = getSongByTitle('When is enough too little?');
+            console.log(searchedSong); 
+
+            const searchedSong2 = getSongByTitle('When is enough too');
+            console.log(searchedSong2); 
+            // making my playlist 
+            function addSongToMyPlaylist(title1){
+                let obj = songDatabase.find(o => o.title === title1);
+                myPlaylist.push(obj);
+            }
+            addSongToMyPlaylist('3 nails in wood');
+            console.log(myPlaylist);
+            // solve the problem for multiple play list and same title songs
+            let playlist1 = [];
+            let playlist2 = [];
+            let playlist3 = [];
+            function addToMyPlaylist(playlist,title,artist ){
+                
+                let obj = songDatabase.find(x => x.title===title && x.artist===artist)
+                playlist.push(obj);
+            }
+            addToMyPlaylist(playlist1,'When is enough too little?','The spies girls');
+            console.log(playlist1);
+            console.log(playlist2);
+            console.log(playlist3);
+
+        </script>
+    <!--NOnoN0nOYes (Note taking app)-->
+        <Script>
+            let notes = [];
+            function addnote (id,content){
+                let obj = {
+                    id : id ,
+                    content : content
+                }
+                notes.push(obj);
+            }
+            addnote(1,'jdfhgdhfgdlæhgsdfjglæhsdfælghiutioweruåot');
+            addnote(2,'note2');
+            addnote(3,'note 3');
+            addnote(4,'note 4');
+            addnote(5,'note 5');
+            console.log(notes);
+            
+            function getNoteById (id){
+                
+                if (isNaN(id) && id != ''){
+                    console.log('Error');
+
+                }else{
+                    for (i = 0; i < notes.length ; i++){
+                          if (notes[i].id ===id){
+                              let obj = notes[i];
+                              console.log(obj);
+                            }
+                        }
+                } 
+            }      
+            getNoteById();
+            function logOutNotesFormatted(){
+                for (i = 0; i < notes.length ; i++){
+                    console.log( "The note with id: " +notes[i].id+ ", has the following note text: "+notes[i].content+".")
+                }
+            }
+            logOutNotesFormatted();
+
+        </Script>    
+    <!--Adding an activity-->
+        <script>
+            let activities = [];
+            function addActivity(date,actvity,duration){
+                let obj = {
+                    date : date,
+                    actvity : actvity,
+                    duration : duration
+                };
+                activities.push(obj);
+            }
+            addActivity('24/7-18', 'Youtube', 30);
+            addActivity('25/7-18', 'facebook', 50);
+            addActivity('26/7-18', 'Gym', 130);
+            console.log(activities);
+            
+            
+            function showStatus(activities){
+                if (activities.length ===0 ){
+                    return  "Add some activities before calling showStatus" ;
+
+                }
+                else{let sum = 0;
+                for(i = 0 ; i < activities.length ; i++){
+                    sum +=  activities[i].duration ;
+                }if (sum >= 400){
+                     return "You have reached your limit, no more smartphoning for you!";
+                }else{
+               return  "You have added "+activities.length+" activities. They amount to "+sum+" min. of usage";}}
+                 
+            }
+            console.log(showStatus(activities));
+            let activities1 = [];
+            console.log(showStatus(activities1));
+            
+
+
+        </script>
+</body>
+</html>

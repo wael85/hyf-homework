@@ -1,0 +1,83 @@
+
+.header-nav{
+      display: flex;
+      align-items: flex-start;
+      margin-left: 20%;
+      height: 7vh;
+      text-align: center;
+
+}
+.header-a{
+    margin-right: 20px;
+    color: red;
+    
+}
+header{
+text-align: justify;
+}
+h1,
+h2,
+p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+header h4{
+    color: rgb(119, 117, 117);
+    margin-top: 0px;
+    margin-left: 20%;
+}
+header h1{
+    margin-bottom: 0px;
+    margin-left: 20%;
+    
+    padding-top: 20px;
+}
+.title{
+    background: rgb(236, 229, 229);
+    height: 20vh;
+}
+.top-imag{
+    width: 100%;
+}
+.quarter-one{
+    width: 50%;
+}
+.quarter-tow{
+    width:30%;
+
+}
+.firsr{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 20%;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.second{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 20%;
+    justify-content: space-between;
+
+}
+.quarter-three{
+   width: 30%;
+}
+.quarter-four{
+     width: 50%;
+}
+footer{
+    display: flex;
+    background: rgb(67, 108, 184);
+    padding-left: 20%;
+    padding-right: 20%;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+ul{
+    
+    list-style: none;
+    
+}
+li{
+    margin-bottom: 9px;
+}

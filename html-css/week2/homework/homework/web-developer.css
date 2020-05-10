@@ -1,0 +1,124 @@
+
+.header-nav{
+      display: flex;
+      align-items: flex-start;
+      margin-left: 20%;
+      height: 7vh;
+      text-align: center;
+}
+
+.header-a{
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+    padding-top: 9px;
+    
+}
+header a:hover{
+    color: gray;
+}
+header{
+text-align: justify;
+}
+h1,
+h2,
+p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+header h4{
+    color: rgb(119, 117, 117);
+    margin-top: 0px;
+    margin-left: 20%;
+}
+header h1{
+    margin-bottom: 0px;
+    padding-left: 20%;
+    
+    padding-top: 20px;
+}
+.title{
+    background: rgb(236, 229, 229);
+     min-width: 100vw;
+    display: table;
+    overflow: auto;
+    
+    
+}
+.top-imag{
+    width: 100vw;
+}
+.quarter-one{
+    width: 50%;
+}
+.quarter-tow{
+    width:30%;
+
+}
+.firsr{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 20%;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.second{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 20%;
+    justify-content: space-between;
+
+}
+.quarter-three{
+   width: 30%;
+}
+.quarter-four{
+     width: 50%;
+}
+footer{
+    display: flex;
+    background: rgb(67, 108, 184);
+    padding-left: 10%;
+    padding-right: 10%;
+
+    align-items: flex-start;
+    justify-content: space-around;
+
+    max-width: 100vw;
+}
+.nav-footer{
+    display: flex;
+    flex-direction: column;
+    
+}
+footer a{
+    text-decoration: none;
+    color: black;
+    margin-bottom: 9px;
+
+    
+}
+footer a:hover{
+    color:red;
+}   
+ul{
+    
+    list-style: none;
+    
+}
+li{
+    margin-bottom: 9px;
+}
+iframe{
+
+    width: 100px;
+}
+@media only screen and (max-width: 400px) {
+    .header-nav,
+    .firsr,
+    .second,
+    footer{
+        display: block;
+    }
+
+}

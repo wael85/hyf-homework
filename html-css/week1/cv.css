@@ -1,0 +1,91 @@
+.contact {
+    float: left;
+    width: 30%;
+    margin: auto;
+    border: none;
+    text-align: center;
+    padding-top: 5%;
+    position: initial;
+
+  background: -webkit-linear-gradient(#79cdf5, #ffffff);
+  background:    -moz-linear-gradient(#79cdf5, #ffffff);
+  background:         linear-gradient(#79cdf5, #ffffff);
+
+  }
+img { width: 100%; height:100%; border-radius: 100%;
+    transform: rotate(90deg);
+}
+.contact-list {
+    list-style-type: none;
+    text-align: center;
+    padding-top: 10%;
+    
+    
+}
+.contactInfo{
+padding-top: 20%;
+white-space:pre-line;
+
+}
+
+     
+
+
+.details{
+    float: left;
+    width: 70%;
+    background-image:url("");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: linear-gradient(to right,rgb(15, 127, 233) 0%,#ffffff 100%),url('background.jpg');
+  background-blend-mode: lighten;
+    
+    
+   
+}
+h2{
+    padding-left: 4%;
+    margin-bottom: 2px;
+    font-style: italic;
+    color: blue;
+}
+hr{
+    margin-left: 1%;
+    padding-top: 1px;
+}
+h3{
+    padding-left: 3%;
+    font-family: 'Gill Sans', 
+    'Gill Sans MT', Calibri, 
+    'Trebuchet MS', sans-serif;
+}
+td{
+    margin-left: 10%;
+    text-align: left;
+    padding: 1%;
+}
+.years{
+    width: 20%;
+}
+.language{
+    width: 50%;
+}
+span{
+   color: rgb(119, 35, 49);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
