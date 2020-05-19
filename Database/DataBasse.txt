@@ -1,0 +1,39 @@
+-- 1. Get the id, name and email of all users
+SELECT id, name, email FROM user;
+-- 2. Find out how many users are in the user table.
+SELECT COUNT(id) FROM user;
+-- 3. Find all users who's name starts with the letter "P"
+SELECT * FROM user WHERE name LIKE 'P%';
+-- 4. Find all users who's email ends with ".com"
+select * from user where email like '%.com';
+-- 5. Find out how many tasks each user has
+SELECT user.id, user.name, COUNT(task.id) AS task_count FROM user
+LEFT JOIN task ON user.id = task.user_id
+GROUP BY user.id
+ORDER BY task_count DESC;
+-- 6. Find out how many users have no tasks
+SELECT user.id, user.name, COUNT(task.id) AS task_count FROM user
+LEFT JOIN task ON user.id = task.user_id
+GROUP BY user.id
+HAVING task_count = 0;
+-- 7. Find out how many users have only one task
+SELECT user.id, user.name, COUNT(task.id) AS task_count FROM user
+LEFT JOIN task ON user.id = task.user_id
+GROUP BY user.id
+HAVING task_count = 1;
+-- 8. Find out how many users have more than one task
+SELECT user.id, user.name, COUNT(task.id) AS task_count FROM user
+LEFT JOIN task ON user.id = task.user_id
+GROUP BY user.id
+HAVING task_count > 1;
+-- 9. Find out how many users have completed at least one task
+SELECT user.id, user.name, COUNT(task.id) AS task_count FROM user
+LEFT JOIN task ON user.id = task.user_id
+WHERE task.status_id = 3
+GROUP BY user.id
+HAVING task_count >= 1;
+-- 10. Find out how many users have completed all their tasks
+SELECT user.id, user.name, COUNT(task.id) AS task_count FROM user
+INNER JOIN task ON user.id = task.user_id
+WHERE task.status_id = 3
+GROUP BY user.id;
