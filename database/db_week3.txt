@@ -1,0 +1,124 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `meal_share` DEFAULT CHARACTER SET utf8 ;
+USE `meal_share` ;
+
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meal_share`.`meal` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  `description` text(45) NOT NULL,
+  `location` varchar(45)null,
+  `when` datetime,
+  `max_reservation` int(10),
+  `price` decimal(10),
+  `created_date` date,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meal_share`.`reservation` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `number_of_guests` int NOT NULL,
+  `meal_id` INT NOT NULL,
+   `created_date` date,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_mael1`
+    FOREIGN KEY (`meal_id`)
+    REFERENCES `meal_share`.`meal` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meal_share`.`review` (
+  `id` int NOT NULL auto_increment,
+  `title` VARCHAR(45) NOT NULL,
+  `description` text NULL,
+  `meal_id` INT NOT NULL,
+  `stars` tinyint,
+   `created_date` date,  
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_mael2`
+    FOREIGN KEY (`meal_id`)
+    REFERENCES `meal_share`.`meal` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+-- ---------------------------------------------------
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- -------------------------------
+-- meal table
+select * from meal  limit 0 ,10000 ;
+-- ------------------------------
+insert into meal (`title` , `description`, `location`, `when` , `max_reservation`, `price` , `created_date`) 
+values ('lunch','verey nice' ,'at home','2020-08-01',10,100,date(now()));
+-- ------------------------------
+select * from meal where id = 10 ;
+-- ------------------------------
+update meal set title = 'breakfast', location = 'school' where id = 1007;
+-- ------------------------------
+delete from meal where id = 1008;
+
+-- Reservation
+select * from Reservation;
+-- ------------------------------
+insert into Reservation (`number_of_guests` , `meal_id`, `created_date`) 
+values (20,9 ,date(now()));
+-- ------------------------------
+select * from Reservation where id = 10 ;
+-- ------------------------------
+update Reservation set number_of_guests = 80 , meal_id = 10 where id = 99;
+-- ------------------------------
+delete from Reservation where id = 55;
+-- Review
+select * from Review;
+-- ------------------------------
+insert into Review (`title` , `description`, `meal_id`, `stars` , `created_date`) 
+values ('good','very good',15,3,now());
+-- ------------------------------
+select * from Review where id = 10 ;
+-- ------------------------------
+update Review set title = 'bad', stars = 1 where id = 90;
+-- ------------------------------
+delete from Review where id = 55;
+
+
+-- Additional queries
+
+select * from meal  where price <100 ;
+-- ---------------
+select meal.title, meal.max_reservation, reservation.number_of_guests from meal 
+join reservation on (reservation.meal_id = meal.id )
+where reservation.number_of_guests < meal.max_reservation ;
+-- --------------
+select * from meal where title like 'el%';
+-- -----------------------------
+select * from meal where created_date > '2011-01-01' and created_date <'2020-01-01'
+order by created_date;
+-- -----------------------------
+select * from meal limit 5 offset 1000;
+-- --------------------------
+select meal.title , review.stars from meal
+join review on (review.meal_id = meal.id )
+where stars >= 4;
+-- ----------------------------
+select meal.title ,reservation.id ,reservation.created_date  from reservation
+join meal on (meal.id = reservation.meal_id)
+where meal.id = 77
+order by reservation.created_date;
+-- ------------------------------
+select meal.id , meal.title , avg(review.stars) as 'avareg' from meal 
+ join review on (meal.id = review.meal_id)
+group by meal.id , meal.title
+order by avareg;
+-- -----------
+
