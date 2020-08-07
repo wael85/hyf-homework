@@ -18,6 +18,7 @@ export class ToDo extends Component {
               }]
         };
       this.handelDelet = this.handelDelet.bind(this);
+      this.handelAddDo = this.handelAddDo.bind(this);
     }     
   handelDelet(place){
       const list = this.state.list
@@ -25,8 +26,15 @@ export class ToDo extends Component {
       this.setState({
           list : list
       })
-      console.log(list);
      
+  }
+  handelAddDo(list){
+    const newDo = {"id" : list.length +1,"description": "Random Text"  }
+    const nList = this.state.list;
+    nList.push(newDo);
+    this.setState({
+        list : nList
+    })
   }
    
   render() {
@@ -35,10 +43,9 @@ export class ToDo extends Component {
       <div>
         <h1>My List :</h1>
         <ul className ="ulClass">
-            <button>Add todo</button>
+            <button onClick = {()=>this.handelAddDo(renderList)}>Add todo</button>
            
            { renderList.map((el , index)=> {
-               console.log(index);
              return(
                 
                 <li key={index}>                  
