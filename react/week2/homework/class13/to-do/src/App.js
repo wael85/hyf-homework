@@ -8,20 +8,7 @@ function App() {
     <div className="App">
      <h3>You spent <Timer/> on this page.</h3> 
      <div>
-       <ToDo list = {[
-  {
-    "id": 1,
-    "description": "Get out of bed"
-  },
-  {
-    "id": 2,
-    "description": "Brush teeth"
-  },
-  {
-    "id": 3,
-    "description": "Eat breakfast"
-  }
-]} />
+       <ToDo />
      </div>
     </div>
   );
