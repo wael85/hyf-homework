@@ -12,23 +12,17 @@ export class CreatLi extends Component {
          this.setState({
              classN : classN
          })
-     }   
-   
+     }    
   render() {
     const elt =this.props.elt;
     const checkClass = this.state.classN;
     return(
       <>
-                 <h3>{elt.id}:</h3>
-                 <span  className ={`${checkClass ? `checked` : `` }` }>
-                      {elt.description} <input type= "checkbox" onChange = {this.setClass}/>
-                 </span>
+        <h3>{elt.id}:</h3>
+            <span  className ={`${checkClass ? `checked` : `` }` }>
+               {elt.description} | {elt.created_date}<input type= "checkbox" onChange = {this.setClass}/>
+            </span> 
 
-        
-      </>
-         
-           
-    
+      </>            
     )}  
-
 }
