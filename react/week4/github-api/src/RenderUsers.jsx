@@ -1,6 +1,8 @@
-import React , {useState , useEffect} from 'react';
+import React , {useState , useEffect, useContext} from 'react';
+import {UserContext } from './UserContext';
 
-export default function RenderUsers({user}){
+export default function RenderUsers(){
+    const {user} = useContext(UserContext);
     const [usersList ,setUsersList] = useState([]);
     const [err ,setErr] = useState(null);
     const errorMes ={mes1 : '',mes2:''}
@@ -47,8 +49,9 @@ export default function RenderUsers({user}){
                     return (
                        <p key = {key}>{userObj.login}</p>
                     )
-                }
+                }else{return false}
             } )}
         </div>
     )
 }
+//

@@ -1,6 +1,7 @@
 import React , {useState} from 'react';
-
-export default function Search({user , setUser}){
+import {UserContext } from './UserContext';
+export default function Search({setUser}){
+    const {user} = React.useContext(UserContext);
     const [userT , setUserT] = useState(user);
     return(
         <div>

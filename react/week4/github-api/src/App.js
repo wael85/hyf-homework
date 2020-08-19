@@ -2,14 +2,19 @@ import React ,{useState }from 'react';
 import './App.css';
 import Search from './SearchPar';
 import RenderUsers from './RenderUsers';
+import {UserContext} from './UserContext';
 
 function App() {
   const [user , setUser] = useState(null || '');
   
   return (
     <div className="App">
-      <Search user = {user} setUser = {setUser}/>  
-      <RenderUsers user = {user}/>
+      <h1>Github user searcher</h1>
+      <UserContext.Provider value = {{user : user}} >
+         <Search  setUser = {setUser}/>  
+         <RenderUsers />
+      </UserContext.Provider >
+      
     </div>
   );
 }
