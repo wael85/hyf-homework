@@ -54,16 +54,20 @@ export class ToDo extends React.Component {
     console.log('this new list ',this.state.list )
   }
   handelEdit(data){
-    //const newDo = {"id" : this.state.list.length +1,"description": data.description , "created_date" : data.createdDate ,"status" : true  }
-    const nList = this.state.list;
-    nList[data.index-1].description = data.description;
-    nList[data.index-1].created_date = data.createdDate;
-    nList[data.index-1].edit= false;
-    this.setState({
-        list : nList
-    });
-    console.log(nList);
-    
+ this.setState(prevState => {
+            const newList = prevState.list.map(todo => {
+                if (data.index === todo.id) {
+                    return {
+                        ...todo,
+                        description: data.description,
+                        created_date: data.createdDate,
+                        edit: false,
+                    };
+                }
+                return todo;
+            });
+            return { list: newList };
+        });
   }
  handel(el){
     const d = this.state.list;
