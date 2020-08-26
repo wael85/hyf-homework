@@ -5,7 +5,7 @@ import RenderUsers from './RenderUsers';
 import {UserContext} from './UserContext';
 
 function App() {
-  const [user , setUser] = useState(null || '');
+  const [user , setUser] = useState('');
   
   return (
     <div className="App">
