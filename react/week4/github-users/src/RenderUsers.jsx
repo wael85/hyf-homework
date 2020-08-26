@@ -40,7 +40,7 @@ export default function RenderUsers(){
     );
     }
     if(usersList && usersList.length === 0){
-      return 'Loding...'
+      return 'Loading...'
     }
     return(
         <div>
