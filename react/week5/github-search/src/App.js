@@ -1,6 +1,7 @@
 import React ,{useState }from 'react';
 import './App.css';
-import Search from './component/SearchPar';
+import {About} from './component/About'
+import {UserProfile} from './component/UserProfile'
 import RenderUsers from './component/RenderUsers';
 import {UserContext} from './component/UserContext';
 import {
@@ -11,15 +12,48 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const [user , setUser] = useState(null || '');
+  const [user , setUser] = useState('');
   
   return (
     <div className="App">
-      <h1>Github user searcher</h1>
-      <UserContext.Provider value = {{user : user}} >
-         <Search  setUser = {setUser}/>  
-         <RenderUsers />
-      </UserContext.Provider >
+      
+      <Router>
+       <UserContext.Provider value = {{user : user}} > 
+        <div>
+          <nav>
+              <ul className="head-list">
+                <li className="nav-items">
+                  <Link to = "/" className = "nav-bar">
+                     Home
+                  </Link>
+                </li>
+                <li className="nav-items">
+                  <Link to = "/about" className = "nav-bar">
+                     About
+                  </Link>
+                </li>
+              </ul>   
+          </nav>
+          <Switch>
+            <Route path="/users/:userLogin"> 
+               <UserProfile/>
+            </Route>
+            <Route path="/about">
+               <About/>
+            </Route>
+            <Route path = "/">
+              <h1>Github user searcher</h1>
+              <div>
+                <form >
+                   <input type="text" value = {user} onChange = {(e)=>setUser(e.target.value)} />
+                </form>
+                </div>                
+              <RenderUsers />      
+            </Route>
+          </Switch>
+        </div>
+        </UserContext.Provider >
+      </Router>
       
     </div>
   );

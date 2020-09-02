@@ -1,11 +1,11 @@
 import React , {useState , useEffect, useContext} from 'react';
 import {UserContext } from './UserContext';
+import { Link } from 'react-router-dom';
 
 export default function RenderUsers(){
     const {user} = useContext(UserContext);
     const [usersList ,setUsersList] = useState([]);
-    const [err ,setErr] = useState(null);
-    const errorMes ={mes1 : '',mes2:''}
+    const [error ,setError] = useState(null);
     useEffect(()=>{
     
       if(!user){
@@ -14,28 +14,24 @@ export default function RenderUsers(){
       fetch(`https://api.github.com/search/users?q=${user}`)
       .then(res =>
         {if(!res.ok){
-          errorMes.mes1 = res.statusText;
-        return (setErr(errorMes))
+        return (setError(res.statusText))
         }else{
-          return res.json()
+          setError(null);
+          return res.json();
         }
           
         })
-      .then(res =>{setUsersList(res.items)}) 
-      .catch((error)=>{
-        errorMes.mes2 = error;
-        return(setErr(errorMes)) ;
-      })     
+      .then(res =>setUsersList(res.items)) 
+      .catch(error => console.log ('render error :', error))    
     },[user]);
     if (!user){
      return 'No users'
     }
 
-    if (err){
+    if (error){
     return (
       <>
-       <p>{`Erorr 1 : ${err.mes1} `}</p>
-       <p>{` Erorr2 :  ${err.mes2}`}</p>
+       <p>{`Erorr  : ${error} `}</p>
       </> 
     );
     }
@@ -47,7 +43,7 @@ export default function RenderUsers(){
             {usersList.map((userObj,key)=>{
                 if( userObj.login.substring(0,user.length) === user ){
                     return (
-                       <p key = {key}>{userObj.login}</p>
+                      <Link to = {`/users/${userObj.login}`}  key = {key}><p >{userObj.login}</p></Link> 
                     )
                 }else{return false}
             } )}
