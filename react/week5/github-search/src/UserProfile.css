@@ -1,0 +1,44 @@
+.profile-img{
+      position: relative;
+      border-radius: 50%;
+      width: 90%;
+}
+body{
+      background-color:ghostwhite;
+}
+main{
+      display: flex;
+      flex-direction: row;
+}
+aside{
+      margin-top: 5%;
+      width : 30%;
+      border-right: 1px solid black;
+      height: 100vh;
+}
+.bio{
+      position: relative;
+      width: 80%;
+      height: fit-content;
+      border: 2px solid black;
+      margin: auto;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.repos{
+      position: relative;
+      width: 45%;
+      height: fit-content;
+      margin: auto;
+}
+.repos-list{
+      
+      display: flex;
+      list-style: none;
+      position: relative;
+      flex-direction: column;
+      padding: 0px;
+}
+.repo{
+      border : 1px solid black;
+
+}
